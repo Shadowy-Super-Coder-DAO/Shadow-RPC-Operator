@@ -9,7 +9,20 @@ So you have your shiny new beast of a server. Let's make it a Shadow Operator RP
 First things first - OS security updates
 ```
 sudo apt update
-sudo apt upgrade
+sudo apt upgrade (Y)
+
+Configuration file '/etc/cloud/cloud.cfg'
+ ==> Modified (by you or by a script) since installation.
+ ==> Package distributor has shipped an updated version.
+   What would you like to do about it ?  Your options are:
+    Y or I  : install the package maintainer's version
+    N or O  : keep your currently-installed version
+      D     : show the differences between the versions
+      Z     : start a shell to examine the situation
+ The default action is to keep your current version.
+*** cloud.cfg (Y/I/N/O/D/Z) [default=N] ? 
+
+
 sudo apt dist-upgrade
 ```
 create user sol
@@ -33,11 +46,15 @@ Etner the "1" then hit enter...and so on
 sudo gdisk /dev/nvme0n1
 n, 1, p, 2048, [max secor available], 8300, p, w
 ```
+p doesn't seem to be a viable option? n, 1, 2048, enter, enter, p, w, Y
+
 note the first step in the next section is deleting the partition we just created above
 ```
 sudo fdisk /dev/nvme0n1
 d, n, p, 1 or 2, default sector, +3000GB, n, p, 1 or 2, default sector, +420GB, w
 ```
+p doesn't seem to be a viable option here either. d, n, 1, enter, +3000G, n, 2, enter, +420G, w
+
 Now make filessytems, directories, delete and make new swap, etc.
 ```
 sudo fdisk -l 
@@ -46,7 +63,7 @@ sudo mkfs -t ext4 /dev/nvme0n1p1
 
 sudo mkfs -t ext4 /dev/nvme0n1p2
 
-sudo mkdir /mnt/
+sudo mkdir /mnt/ (File exists?)
 
 sudo mkdir /mnt/ramdrive
 
@@ -126,13 +143,13 @@ But Wait - what was that ramdrive and tmpfs stuff? Leave it for now. That is an 
 
 now edit permissions and make sure user sol is the owner for solana directories
 ```
-sudo chown sol:sol /mt/solana-accounts
+sudo chown sol:sol /mt/solana-accounts - this directory doesn't exist, even though we already made it above?
 
-sudo chown sol:sol /mt/ledger
+sudo chown sol:sol /mt/ledger - same?
 
 sudo chown sol:sol ~/log
 
-sudo chown sol:sol /mt/ledger/validator-ledger
+sudo chown sol:sol /mt/ledger/validator-ledger - this one too?
 ```
 mount everything
 ```
@@ -233,7 +250,7 @@ exec solana-validator \
     --rpc-pubsub-max-connections 1000 \
 
 ```
-save / exit (:wq)
+save / exit (ctrl+o, ctrl+x) (you changed it to nano from vim ;)
 
 make executable
 ```
@@ -241,7 +258,7 @@ sudo chmod +x ~/start-validator.sh
 ```
 change the ownership to user sol
 ```
-sudo chown sol:sol start-validator.sh
+sudo chown sol:sol ~/start-validator.sh
 ```
 create system service - sol.service (run on boot, auto-restart when sys fail) 
 ```
@@ -269,7 +286,7 @@ ExecStart=/home/sol/start-validator.sh
 [Install]
 WantedBy=multi-user.target
 ```
-save/exit (:wq)
+save/exit (ctrl+o, ctrl+x)
 
 make system tuner service - systuner.service
 ```
@@ -289,6 +306,8 @@ ExecStart=/home/sol/.local/share/solana/install/active_release/bin/solana-sys-tu
 [Install]
 WantedBy=multi-user.target
 ```
+save/exit (ctrl+o, ctrl+x)
+
 reload the system services
 ```
 sudo systemctl daemon-reload
@@ -309,6 +328,8 @@ dump this into file:
   endscript
 }
 ```
+save/exit (ctrl+o, ctrl+x)
+
 reset log rotate
 ```
 sudo systemctl restart logrotate
@@ -350,6 +371,7 @@ net.core.rmem_default=134217728
 net.core.wmem_max=134217728
 net.core.wmem_default=134217728
 ```
+save/exit (ctrl+o, ctrl+x)
 
 # start up and test
 
