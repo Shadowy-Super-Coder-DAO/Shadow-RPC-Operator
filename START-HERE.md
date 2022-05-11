@@ -4,7 +4,7 @@ Shadow Operator resources for running a high performance &amp; high stability Sh
 
 # Overview
 
-Please make sure to review this comprehensive overview of the [Shadow Protocol](https://genesysgo.medium.com/the-comprehensive-guide-to-genesysgo-and-the-shdw-ido-278b90d3186c)
+Please make sure to review this comprehensive overview of the [Shadow Protocol](https://shdw.genesysgo.com/the-shadow-protocol)
 
 This guide is currently intended only for setting up servers from the [Solana Server Program](https://solana.foundation/server-program).
 
@@ -40,7 +40,7 @@ If you are just getting started, walking through the `1-Configuring a Shadow Nod
 Once you have completed Steps 1-3 you should notify the GenesysGo team and receive the Shadow Operator role in Discord. This grants you access to the Shadow Ops and Shadow health monitoring channels.
 # Rewards for Operating a Shadow Node
 
-Please see this [resource](https://genesysgo.medium.com/the-comprehensive-guide-to-genesysgo-and-the-shdw-ido-278b90d3186c) for how rewards will work:
+Please see this [resource](https://shdw.genesysgo.com/shadow-infrastructure-overview/shadow-operators) for how rewards will work:
 
 # Other Resources & Learning
 
