@@ -242,6 +242,8 @@ exec solana-validator \
 --rpc-bind-address 0.0.0.0 \
 --enable-cpi-and-log-storage \
 --account-index program-id \
+--account-index spl-token-owner \
+--account-index spl-token-mint \
 --enable-rpc-transaction-history \
 --no-duplicate-instance-check \
 --wal-recovery-mode skip_any_corrupted_record \
@@ -249,12 +251,11 @@ exec solana-validator \
 --log ~/log/solana-validator.log \
 --accounts /mt/accounts/solana-accounts \
 --ledger /mt/ledger/validator-ledger \
---limit-ledger-size 400000000 \
---rpc-send-default-max-retries 3 \
---rpc-send-service-max-retries 3 \
+--limit-ledger-size \
+--rpc-send-default-max-retries 30 \
+--rpc-send-service-max-retries 30 \
 --rpc-send-retry-ms 2000 \
 --full-rpc-api \
---accounts-index-memory-limit-mb 100 \
 --account-index-exclude-key kinXdEcpDQeHPEuQnqmUgtYykqKGVFq6CeVX5iAHJq6 \
 ```
 Save / exit `ctrl+0` enter then `ctrl+x`
@@ -263,6 +264,10 @@ Save / exit `ctrl+0` enter then `ctrl+x`
 If you have a machine with 512gb ram then you can modify the following lines to suite your ram levels (example below is for 512gb ram):
 ```
 (increase) --accounts-index-memory-limit-mb 350 \
+
+>**Note:**
+Removing accounts index cmpletely has been helpful for some servers. Worth trying if you cannot catch up.
+
 ```
 >**Note:** If you have more than 256gb ram you might also consider running /mt/accounts/solana-accounts on a tmpfs filesystem instead. An example of this is detailed in the validator setup located here - https://github.com/Shadowy-Super-Coder-DAO/Solana-Validator-Setup-Equinix/blob/main/solana-validator-SSP-EQsetup.md  
 
