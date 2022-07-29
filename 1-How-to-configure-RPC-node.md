@@ -171,12 +171,14 @@ Dump this entire command block for basic Shadow Node function:
 sudo ufw allow 53;sudo ufw allow 8899/tcp;sudo ufw allow 8900/tcp;sudo ufw allow 8000:8020/udp
 ```
 
-## Install the Solana CLI and don't forget to check for current version (1.10.25 as of 06/23/2022)
+## Install the Solana CLI and don't forget to check for current version (1.10.32 as of 07/29/2022)
 
 ```
-sh -c "$(curl -sSfL https://release.solana.com/v1.10.25/install)"
+sh -c "$(curl -sSfL https://release.solana.com/v1.10.32/install)"
 
 ```
+
+(check for latest releases here https://github.com/solana-labs/solana/releases)
 
 It will ask you to map the PATH just copy and paste the command below:
 
